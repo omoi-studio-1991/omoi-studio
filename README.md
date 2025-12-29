@@ -22,7 +22,7 @@ Push to `main` triggers automatic deployment on Vercel.
 | Project | Repo | Live URL |
 |---------|------|----------|
 | **omoi Studio Landing** (this) | [omoi-studio-1991/omoi-studio](https://github.com/omoi-studio-1991/omoi-studio) | [omoi.studio](https://omoi.studio) |
-| **omoi Coach** | [omoi-studio-1991/omoi-coach](https://github.com/omoi-studio-1991/omoi-coach) | [coach.omoi.studio](https://coach.omoi.studio) |
+| **omoi Coach** | Private | [coach.omoi.studio](https://coach.omoi.studio) |
 | **Backend API** | Private | [api.coach.omoi.studio](https://api.coach.omoi.studio) |
 
 ---
