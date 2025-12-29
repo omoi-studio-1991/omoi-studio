@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>omoi Studio</title>
+  <meta name="description" content="omoi Studio - Creative tools for photographers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0a0b;
+      color: #ffffff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Subtle gradient bg */
+    .bg-gradient {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(ellipse 50% 80% at 20% 0%, rgba(255, 26, 117, 0.07) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 50% at 80% 100%, rgba(255, 107, 43, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Main layout */
+    .main {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    /* Logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+      animation: fade-in 0.8s ease-out;
+    }
+
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, #ff1a75 0%, #ff6b2b 50%, #ffe600 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .logo-text {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Hero text */
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+      animation: fade-in 0.8s ease-out 0.1s backwards;
+    }
+
+    .headline {
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .headline span {
+      background: linear-gradient(135deg, #ff1a75 0%, #ff6b2b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.4);
+      letter-spacing: -0.01em;
+    }
+
+    /* Products section */
+    .products {
+      animation: fade-in 0.8s ease-out 0.2s backwards;
+    }
+
+    .product-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .product-card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .product-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #ff1a75 0%, #ff6b2b 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .product-icon svg {
+      width: 20px;
+      height: 20px;
+      color: white;
+    }
+
+    .product-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .product-name {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .beta-tag {
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0.2rem 0.45rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .product-desc {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .product-arrow {
+      margin-left: auto;
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.2);
+      transition: all 0.2s ease;
+      padding-left: 0.5rem;
+    }
+
+    .product-card:hover .product-arrow {
+      color: rgba(255, 255, 255, 0.5);
+      transform: translateX(3px);
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Footer */
+    .footer {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.15);
+      letter-spacing: 0.01em;
+    }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .bg-gradient { display: none; }
+      .main { padding: 1.5rem; }
+      .logo { margin-bottom: 2rem; }
+      .logo-icon { width: 38px; height: 38px; font-size: 1.2rem; }
+      .logo-text { font-size: 1.1rem; }
+      .hero { margin-bottom: 2.5rem; }
+      .headline { font-size: 1.75rem; }
+      .tagline { font-size: 0.95rem; }
+      .product-card { padding: 0.875rem 1rem; }
+      .product-icon { width: 38px; height: 38px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-gradient"></div>
+
+  <main class="main">
+    <div class="logo">
+      <div class="logo-icon">o</div>
+      <span class="logo-text">omoi Studio</span>
+    </div>
+
+    <div class="hero">
+      <h1 class="headline">Level up your <span>photography</span>.</h1>
+      <p class="tagline">Creative tools for photographers who want to grow.</p>
+    </div>
+
+    <div class="products">
+      <a href="https://coach.omoi.studio" class="product-card" target="_blank">
+        <div class="product-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <span class="product-name">omoi Coach <span class="beta-tag">Open Beta</span></span>
+          <span class="product-desc">AI feedback for your photos</span>
+        </div>
+        <div class="product-arrow">→</div>
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    © 2025 omoi Studio
+  </footer>
+</body>
+</html>
